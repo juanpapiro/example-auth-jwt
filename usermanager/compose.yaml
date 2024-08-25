@@ -1,0 +1,25 @@
+services:
+
+  users_db:
+    image: postgres:16.2
+    container_name: users_db
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=fiapecomm
+      - POSTGRES_PASSWORD=fiapecomm
+      - POSTGRES_DB=fiap_ecomm_users
+    volumes:
+      - users_db_volume:/var/lib/postgresql/data
+    networks:
+      - fiap_ecommerce
+
+
+networks:
+  fiap_ecommerce:
+    name: fiap_ecommerce
+    driver: bridge
+
+volumes:
+  users_db_volume:
